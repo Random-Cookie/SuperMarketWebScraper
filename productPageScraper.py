@@ -1,7 +1,5 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import pandas as pd
-import time
 
 driver = webdriver.Chrome('D:\Joe\DevPython\cd.exe')
 
@@ -11,7 +9,6 @@ products = []
 prices = []
 portions = []
 
-#prod_no = 303151553
 for url in urls:
 	driver.get(url)
 
