@@ -49,7 +49,7 @@ for cat_url in cat_urls:
 	prod_scraper = ProductPageScraper(driver)
 	cat_start_time = time.time()
 	product_count = 0
-	while not cat_scraper.get_next_url() is None:
+	while not cat_scraper.get_next_url() is None and product_count < 10:
 
 		urls = cat_scraper.scrape_next_page()
 
@@ -59,7 +59,8 @@ for cat_url in cat_urls:
 			if prod_info:
 				write_product(conn, tuple(prod_info))
 				product_count += 1
+
 	print("Scraped: " + cat_url)
-	print("Added " + str(product_count) + "products in " + convert(time.time() - cat_start_time))
+	print("Added " + str(product_count) + " products in " + convert(time.time() - cat_start_time))
 driver.close()
 quit(0)
