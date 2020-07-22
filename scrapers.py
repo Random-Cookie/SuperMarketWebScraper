@@ -24,6 +24,7 @@ class ProductPageScraper(Scraper):
 	def scrape(self, url: str) -> List[str]:
 		soup = self._make_soup(url)
 		for a in soup.find_all('div', attrs={'class': 'product-details-page'}):
+			product = ""
 			try:
 				product = a.find('h1', attrs={'class': 'product-details-tile__title'}).text
 				price = float(a.find('span', attrs={'class': 'value'}).text)
@@ -40,6 +41,7 @@ class ProductPageScraper(Scraper):
 				return [product, price, portions[0], price_per_portion]
 			except Exception as e:
 				print("My good sir, you seem to have encountered an error:")
+				print("Product: " + product)
 				print(e.with_traceback(e.__traceback__))
 		return []
 

@@ -2,10 +2,12 @@ from scrapers import *
 import sqlite3
 import time
 import concurrent.futures
+from selenium.webdriver.chrome.options import Options
 
 CHROMEDRIVER_PATH = 'D:/Joe/DevPython/chromedriver.exe'
 URL_PREFIX = "https://www.tesco.com"
 DATABASE = "test.db"
+USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
 
 
 # create a connection to a database file
@@ -39,30 +41,39 @@ def convert(seconds):
 
 
 def scrape_category(cat_url):
-
-	driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+	opts = Options()
+	opts.headless = True
+	opts.add_argument('user-agent={0}'.format(USER_AGENT))
+	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=opts)
 	conn = create_connection(DATABASE)
 	cat_scraper = CategoryPageScraper(driver, URL_PREFIX, cat_url)
 	prod_scraper = ProductPageScraper(driver)
 	cat_start_time = time.time()
-	product_count = 0
+	cat_product_count = 0
 	while not cat_scraper.get_next_url() is None:
-
 		urls = cat_scraper.scrape_next_page()
-
+		page_start_time = time.time()
+		product_count = 0
 		for url in urls:
 			prod_info = prod_scraper.scrape(URL_PREFIX + url)
-			print(prod_info)
+			# print(prod_info) # outputting product info to console
 			if prod_info:
 				write_product(conn, tuple(prod_info))
 				product_count += 1
+		# debug info
+		print("Scraped: " + cat_scraper.get_next_url())
+		print("Added " + str(product_count) + " products in " + convert(time.time() - page_start_time))
+		cat_product_count += product_count
 	driver.close()
 	conn.close()
 	print("Scraped: " + cat_url)
-	print("Added " + str(product_count) + " products in " + convert(time.time() - cat_start_time))
+	print("Added " + str(cat_product_count) + " products in " + convert(time.time() - cat_start_time))
 
 
-home_driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+h_opts = Options()
+h_opts.headless = True
+h_opts.add_argument('user-agent={0}'.format(USER_AGENT))
+home_driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=h_opts)
 
 home_scraper = HomePageScraper(home_driver, URL_PREFIX)
 cat_urls = home_scraper.scrape(URL_PREFIX + '/groceries/en-GB/')
