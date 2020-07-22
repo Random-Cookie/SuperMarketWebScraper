@@ -1,6 +1,11 @@
 from scrapers import *
 import sqlite3
 import time
+import concurrent.futures
+
+CHROMEDRIVER_PATH = 'D:/Joe/DevPython/chromedriver.exe'
+URL_PREFIX = "https://www.tesco.com"
+DATABASE = "test.db"
 
 
 # create a connection to a database file
@@ -33,23 +38,15 @@ def convert(seconds):
 	return "%d:%02d:%02d" % (hour, minutes, seconds)
 
 
-CHROMEDRIVER_PATH = 'D:/Joe/DevPython/chromedriver.exe'
-URL_PREFIX = "https://www.tesco.com"
-DATABASE = "test.db"
+def scrape_category(cat_url):
 
-conn = create_connection(DATABASE)
-
-driver = webdriver.Chrome(CHROMEDRIVER_PATH)
-
-home_scraper = HomePageScraper(driver, URL_PREFIX)
-cat_urls = home_scraper.scrape(URL_PREFIX + '/groceries/en-GB/')
-print("Category URLS: " + str(cat_urls))
-for cat_url in cat_urls:
+	driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+	conn = create_connection(DATABASE)
 	cat_scraper = CategoryPageScraper(driver, URL_PREFIX, cat_url)
 	prod_scraper = ProductPageScraper(driver)
 	cat_start_time = time.time()
 	product_count = 0
-	while not cat_scraper.get_next_url() is None and product_count < 10:
+	while not cat_scraper.get_next_url() is None:
 
 		urls = cat_scraper.scrape_next_page()
 
@@ -59,8 +56,20 @@ for cat_url in cat_urls:
 			if prod_info:
 				write_product(conn, tuple(prod_info))
 				product_count += 1
-
+	driver.close()
+	conn.close()
 	print("Scraped: " + cat_url)
 	print("Added " + str(product_count) + " products in " + convert(time.time() - cat_start_time))
-driver.close()
+
+
+home_driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+
+home_scraper = HomePageScraper(home_driver, URL_PREFIX)
+cat_urls = home_scraper.scrape(URL_PREFIX + '/groceries/en-GB/')
+home_driver.close()
+print("Category URLS: " + str(cat_urls))
+
+with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+	executor.map(scrape_category, cat_urls)
+
 quit(0)
