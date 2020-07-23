@@ -7,6 +7,7 @@ class ProductPageScraper(Scraper):
 		Scraper.__init__(self, driver)
 
 	def scrape(self, url: str) -> List[str]:
+		self._current_URL = url
 		soup = self._make_soup(url)
 		for a in soup.find_all('div', attrs={'class': 'product-details-page'}):
 			product = ""
@@ -37,22 +38,14 @@ class ProductPageScraper(Scraper):
 				return []
 
 
-class CategoryPageScraper(Scraper):
-	def __init__(self, driver: webdriver, url_prefix: str = "", init_url: str = ""):
-		Scraper.__init__(self, driver)
+class CategoryPageScraper(ContinuousScraper):
+	def __init__(self, driver: webdriver, init_url: str = "", url_prefix: str = ""):
+		ContinuousScraper.__init__(self, driver, url_prefix + init_url)
 		self.url_prefix = url_prefix
-		self._next_URL = init_url
-		self._current_URL = ""
 
 	@staticmethod
-	def find_next_url(soup: BeautifulSoup) -> str:
+	def __find_next_url(soup: BeautifulSoup) -> str:
 		return soup.find('a', attrs={'title': 'Go to results page'}).get('href')
-
-	def get_current_url(self):
-		return self._current_URL
-
-	def get_next_url(self):
-		return self._next_URL
 
 	def scrape(self, url: str) -> List[str]:
 		urls = []
@@ -64,13 +57,10 @@ class CategoryPageScraper(Scraper):
 				pass
 		try:
 			self._current_URL = self._next_URL
-			self._next_URL = self.find_next_url(soup)
+			self._next_URL = self.url_prefix + self.__find_next_url(soup)
 		except:
 			pass
 		return urls
-
-	def scrape_next_page(self):
-		return self.scrape(self.url_prefix + self._next_URL)
 
 
 class HomePageScraper(Scraper):
@@ -81,6 +71,7 @@ class HomePageScraper(Scraper):
 
 	def scrape(self, url: str) -> List[str]:
 		urls = []
+		self._current_URL = url
 		soup = self._make_soup(url)
 		super_dep_menu = soup.find('ul', attrs={'class': 'menu menu-superdepartment'})
 		super_deps = super_dep_menu.find_all('a')

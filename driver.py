@@ -46,7 +46,7 @@ def scrape_category(cat_url):
 	opts.add_argument('user-agent={0}'.format(USER_AGENT))
 	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=opts)
 	conn = create_connection(DATABASE)
-	cat_scraper = CategoryPageScraper(driver, URL_PREFIX, cat_url)
+	cat_scraper = CategoryPageScraper(driver, cat_url, URL_PREFIX)
 	prod_scraper = ProductPageScraper(driver)
 	cat_start_time = time.time()
 	cat_product_count = 0
@@ -56,7 +56,7 @@ def scrape_category(cat_url):
 		product_count = 0
 		for url in urls:
 			prod_info = prod_scraper.scrape(URL_PREFIX + url)
-			# print(prod_info) # outputting product info to console
+			print(prod_info)  # outputting product info to console
 			if prod_info:
 				write_product(conn, tuple(prod_info))
 				product_count += 1
