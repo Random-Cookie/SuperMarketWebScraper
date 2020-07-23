@@ -1,4 +1,4 @@
-from scrapers import *
+from Scrapers.Tesco import *
 import sqlite3
 import time
 import concurrent.futures
@@ -61,13 +61,13 @@ def scrape_category(cat_url):
 				write_product(conn, tuple(prod_info))
 				product_count += 1
 		# debug info
-		print("Scraped: " + cat_scraper.get_next_url())
-		print("Added " + str(product_count) + " products in " + convert(time.time() - page_start_time))
+		print("     Scraped: " + cat_scraper.get_current_url())
+		print("         Added " + str(product_count) + " products in " + convert(time.time() - page_start_time))
 		cat_product_count += product_count
 	driver.close()
 	conn.close()
 	print("Scraped: " + cat_url)
-	print("Added " + str(cat_product_count) + " products in " + convert(time.time() - cat_start_time))
+	print(" Added " + str(cat_product_count) + " products in " + convert(time.time() - cat_start_time))
 
 
 h_opts = Options()
