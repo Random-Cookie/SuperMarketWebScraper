@@ -4,10 +4,11 @@ import time
 import concurrent.futures
 from selenium.webdriver.chrome.options import Options
 
-CHROMEDRIVER_PATH = 'D:/Joe/DevPython/chromedriver.exe'
+CHROMEDRIVER_PATH = 'chromedriver.exe'
 URL_PREFIX = "https://www.tesco.com"
 DATABASE = "test.db"
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
+DEBUG_INFO = True
 
 
 # create a connection to a database file
@@ -56,13 +57,14 @@ def scrape_category(cat_url):
 		product_count = 0
 		for url in urls:
 			prod_info = prod_scraper.scrape(URL_PREFIX + url)
-			print(prod_info)  # outputting product info to console
 			if prod_info:
 				write_product(conn, tuple(prod_info))
 				product_count += 1
-		# debug info
-		print("     Scraped: " + cat_scraper.get_current_url())
-		print("         Added " + str(product_count) + " products in " + convert(time.time() - page_start_time))
+			if DEBUG_INFO:
+				print(prod_info)  # outputting product info to console
+		if DEBUG_INFO:
+			print("     Scraped: " + cat_scraper.get_current_url())
+			print("         Added " + str(product_count) + " products in " + convert(time.time() - page_start_time))
 		cat_product_count += product_count
 	driver.close()
 	conn.close()

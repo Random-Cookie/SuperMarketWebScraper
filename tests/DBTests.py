@@ -14,7 +14,7 @@ def create_connection(db_file):
 
 
 def write_product(connection, product):
-	sql = ('INSERT INTO Products(name, price, servings, priceperserving)\n'
+	sql = ('INSERT INTO Products(Name, Price, Servings, PricePerServing)\n'
 			'VALUES(?,?,?,?)')
 	cur = connection.cursor()
 	cur.execute(sql, product)

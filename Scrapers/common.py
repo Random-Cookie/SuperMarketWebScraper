@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from typing import List
+from abc import abstractmethod
 
 
 class Scraper:
@@ -16,6 +17,7 @@ class Scraper:
 		content = self.__driver.page_source
 		return BeautifulSoup(content, 'html.parser')
 
+	@abstractmethod
 	def scrape(self, url: str) -> List[str]:
 		self._current_URL = url
 		return []
@@ -27,6 +29,7 @@ class ContinuousScraper(Scraper):
 		self._next_URL = init_url
 
 	@staticmethod
+	@abstractmethod
 	def __find_next_url(soup: BeautifulSoup) -> str:
 		return ""
 
@@ -36,4 +39,7 @@ class ContinuousScraper(Scraper):
 	def scrape_next_page(self):
 		return self.scrape(self._next_URL)
 
-
+	@abstractmethod
+	def scrape(self, url: str) -> List[str]:
+		self._current_URL = url
+		return []
