@@ -1,20 +1,5 @@
-from selenium import webdriver
-from bs4 import BeautifulSoup
-from typing import List
+from Scrapers.common import *
 import re
-
-
-class Scraper:
-	def __init__(self, driver: webdriver):
-		self.__driver = driver
-
-	def _make_soup(self, url: str) -> BeautifulSoup:
-		self.__driver.get(url)
-		content = self.__driver.page_source
-		return BeautifulSoup(content, 'html.parser')
-
-	def scrape(self, url: str) -> List[str]:
-		return []
 
 
 class ProductPageScraper(Scraper):
@@ -24,9 +9,16 @@ class ProductPageScraper(Scraper):
 	def scrape(self, url: str) -> List[str]:
 		soup = self._make_soup(url)
 		for a in soup.find_all('div', attrs={'class': 'product-details-page'}):
+			product = ""
 			try:
-				product = a.find('h1', attrs={'class': 'product-details-tile__title'}).text
-				price = float(a.find('span', attrs={'class': 'value'}).text)
+				try:
+					product = a.find('h1', attrs={'class': 'product-details-tile__title'}).text
+				except:
+					product = "n/a"
+				try:
+					price = float(a.find('span', attrs={'class': 'value'}).text)
+				except:
+					price = 0
 				try:
 					portions_text = a.find('div', attrs={'id': 'uses'}).find('p', attrs={'class': 'product-info-block__content'}).text
 				except:
@@ -40,8 +32,9 @@ class ProductPageScraper(Scraper):
 				return [product, price, portions[0], price_per_portion]
 			except Exception as e:
 				print("My good sir, you seem to have encountered an error:")
+				print("Product: " + product)
 				print(e.with_traceback(e.__traceback__))
-		return []
+				return []
 
 
 class CategoryPageScraper(Scraper):
@@ -49,10 +42,14 @@ class CategoryPageScraper(Scraper):
 		Scraper.__init__(self, driver)
 		self.url_prefix = url_prefix
 		self._next_URL = init_url
+		self._current_URL = ""
 
 	@staticmethod
 	def find_next_url(soup: BeautifulSoup) -> str:
 		return soup.find('a', attrs={'title': 'Go to results page'}).get('href')
+
+	def get_current_url(self):
+		return self._current_URL
 
 	def get_next_url(self):
 		return self._next_URL
@@ -66,6 +63,7 @@ class CategoryPageScraper(Scraper):
 			except:
 				pass
 		try:
+			self._current_URL = self._next_URL
 			self._next_URL = self.find_next_url(soup)
 		except:
 			pass
