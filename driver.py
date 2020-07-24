@@ -1,10 +1,13 @@
-from Scrapers.Tesco import *
-import sqlite3
-import time
 import concurrent.futures
+import sqlite3
+import subprocess
+import time
+
 from selenium.webdriver.chrome.options import Options
 
-CHROMEDRIVER_PATH = 'chromedriver.exe'
+from Scrapers.Tesco import *
+
+CHROMEDRIVER_PATH = 'res/chromedriver.exe'
 URL_PREFIX = "https://www.tesco.com"
 DATABASE = "test.db"
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
@@ -22,13 +25,16 @@ def create_connection(db_file):
 
 
 # write a product to the database
-def write_product(connection, product):
-	sql = ('INSERT INTO Products(Name, Price, Servings, PricePerServing)\n'
-								'VALUES(?,?,?,?)')
+def write_product(connection, product: Product):
 	cur = connection.cursor()
-	cur.execute(sql, product)
-	connection.commit()
-	return cur.lastrowid
+	try:
+		prod_list = [product.id, product.name, product.price, product.servings, product.price_per_serving]
+		sql = ('INSERT INTO Products(ProductID, Name, Price, Servings, PricePerServing)\n'
+									'VALUES(?, ?, ?, ?, ?)')
+		cur.execute(sql, prod_list)
+		connection.commit()
+	except Exception as e:
+		print(e)
 
 
 def convert(seconds):
@@ -58,10 +64,11 @@ def scrape_category(cat_url):
 		for url in urls:
 			prod_info = prod_scraper.scrape(URL_PREFIX + url)
 			if prod_info:
-				write_product(conn, tuple(prod_info))
+				write_product(conn, prod_info)
 				product_count += 1
 			if DEBUG_INFO:
-				print(prod_info)  # outputting product info to console
+				# pass
+				print(str(prod_info))
 		if DEBUG_INFO:
 			print("     Scraped: " + cat_scraper.get_current_url())
 			print("         Added " + str(product_count) + " products in " + convert(time.time() - page_start_time))
@@ -85,4 +92,6 @@ print("Category URLS: " + str(cat_urls))
 with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
 	executor.map(scrape_category, cat_urls)
 
+
+subprocess.call([r"res\killChromeDriver.bat"])
 quit(0)

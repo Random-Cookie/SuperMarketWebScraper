@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="TTDB" uuid="b95675cb-fa5b-4052-8b4b-a023b2d9d9cf">
+    <data-source source="LOCAL" name="test" uuid="6352bc12-f2aa-4e63-b17f-6f76160638b8">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\Joe\DevPython\SuperMarketWebScraper\TTDB.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:\Joe\DevPython\SuperMarketWebScraper\test.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
@@ -18,11 +18,11 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="test" uuid="281efbeb-3538-4fcc-bbd0-7866e7b589d2">
+    <data-source source="LOCAL" name="TTDB" uuid="562c092a-6090-4314-ba80-ec22d9dce57f">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\Joe\DevPython\SuperMarketWebScraper\test.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:\Joe\DevPython\SuperMarketWebScraper\TTDB.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

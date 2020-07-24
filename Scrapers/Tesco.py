@@ -1,41 +1,47 @@
-from Scrapers.common import *
 import re
+
+from Scrapers.common import *
 
 
 class ProductPageScraper(Scraper):
 	def __init__(self, driver: webdriver):
 		Scraper.__init__(self, driver)
 
-	def scrape(self, url: str) -> List[str]:
+	def scrape(self, url: str) -> Product:
 		self._current_URL = url
 		soup = self._make_soup(url)
 		for a in soup.find_all('div', attrs={'class': 'product-details-page'}):
-			product = ""
+			product = Product()
 			try:
+				product.id = self._current_URL.split('/')[-1]
 				try:
-					product = a.find('h1', attrs={'class': 'product-details-tile__title'}).text
+					product.name = a.find('h1', attrs={'class': 'product-details-tile__title'}).text
 				except:
-					product = "n/a"
+					product.name = "n/a"
 				try:
-					price = float(a.find('span', attrs={'class': 'value'}).text)
+					product.price = float(a.find('span', attrs={'class': 'value'}).text)
 				except:
-					price = 0
+					product.price = -1
 				try:
 					portions_text = a.find('div', attrs={'id': 'uses'}).find('p', attrs={'class': 'product-info-block__content'}).text
 				except:
 					portions_text = ""
 				portions = re.findall(r'\d+', portions_text)
-				price_per_portion = "n/a"
 				if portions and portions[0] != "0":
-					price_per_portion = round(price / int(portions[0]), 2)
-				else:
-					portions = ["n/a"]
-				return [product, price, portions[0], price_per_portion]
+					product.servings = str(portions[0])
+					product.price_per_serving = round(product.price / int(product.servings), 2)
+				try:
+					allergen_tags = a.find('div', attrs={'id': 'ingredients'}).find_all('strong')
+					for allergen_tag in allergen_tags:
+						if allergen_tag.text not in product.allergens and "INGREDIENTS" not in allergen_tag.text:
+							product.allergens.append(allergen_tag.text)
+				except:
+					pass
 			except Exception as e:
 				print("My good sir, you seem to have encountered an error:")
-				print("Product: " + product)
+				print("Product: " + str(product))
 				print(e.with_traceback(e.__traceback__))
-				return []
+			return product
 
 
 class CategoryPageScraper(ContinuousScraper):
