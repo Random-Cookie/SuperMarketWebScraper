@@ -10,38 +10,38 @@ class ProductPageScraper(Scraper):
 	def scrape(self, url: str) -> Product:
 		self._current_URL = url
 		soup = self._make_soup(url)
-		for a in soup.find_all('div', attrs={'class': 'product-details-page'}):
-			product = Product()
+		main_col = soup.find('div', attrs={'class': 'product-details-page'})
+		product = Product()
+		try:
+			product.id = self._current_URL.split('/')[-1]
 			try:
-				product.id = self._current_URL.split('/')[-1]
-				try:
-					product.name = a.find('h1', attrs={'class': 'product-details-tile__title'}).text
-				except:
-					product.name = "n/a"
-				try:
-					product.price = float(a.find('span', attrs={'class': 'value'}).text)
-				except:
-					product.price = -1
-				try:
-					portions_text = a.find('div', attrs={'id': 'uses'}).find('p', attrs={'class': 'product-info-block__content'}).text
-				except:
-					portions_text = ""
+				product.name = main_col.find('h1', attrs={'class': 'product-details-tile__title'}).text
+			except:
+				pass
+			try:
+				product.price = float(main_col.find('span', attrs={'class': 'value'}).text)
+			except:
+				pass
+			try:
+				portions_text = main_col.find('div', attrs={'id': 'uses'}).find('p', attrs={'class': 'product-info-block__content'}).text
 				portions = re.findall(r'\d+', portions_text)
 				if portions and portions[0] != "0":
-					product.servings = str(portions[0])
+					product.servings = portions[0]
 					product.price_per_serving = round(product.price / int(product.servings), 2)
-				try:
-					allergen_tags = a.find('div', attrs={'id': 'ingredients'}).find_all('strong')
-					for allergen_tag in allergen_tags:
-						if allergen_tag.text not in product.allergens and "INGREDIENTS" not in allergen_tag.text:
-							product.allergens.append(allergen_tag.text)
-				except:
-					pass
-			except Exception as e:
-				print("My good sir, you seem to have encountered an error:")
-				print("Product: " + str(product))
-				print(e.with_traceback(e.__traceback__))
-			return product
+			except:
+				pass
+			try:
+				allergen_tags = main_col.find('div', attrs={'id': 'ingredients'}).find_all('strong')
+				for allergen_tag in allergen_tags:
+					if allergen_tag.text not in product.allergens and "INGREDIENTS" not in allergen_tag.text:
+						product.allergens.append(allergen_tag.text)
+			except:
+				pass
+		except Exception as e:
+			print("My good sir, you seem to have encountered an error:")
+			print(" Product: " + str(product))
+			print(e.with_traceback(e.__traceback__))
+		return product
 
 
 class CategoryPageScraper(ContinuousScraper):

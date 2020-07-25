@@ -8,7 +8,7 @@ from selenium import webdriver
 
 @dataclass(order=True)
 class Product:
-	id: str = "0"
+	id: str = "invalid"
 	name: str = "n/a"
 	price: float = -1
 	servings: float = -1
@@ -16,8 +16,8 @@ class Product:
 	allergens: List[str] = field(default_factory=lambda: [])
 
 	def __str__(self):
-		return "Product: " + self.id + ", " + self.name + ", " + str(self.price) + ", " + str(
-			self.servings) + ", " + str(self.price_per_serving) + ", " + str(self.allergens)
+		return ("Product: " + self.id + ", " + self.name + ", " + str(self.price) + ", " +
+				str(self.servings) + ", " + str(self.price_per_serving) + ", " + str(self.allergens))
 
 
 class Scraper:
