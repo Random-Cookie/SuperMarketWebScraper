@@ -8,11 +8,11 @@ from Scrapers.common import *
 write_lock = Lock()
 
 
-def create_connection(db_file):
+def create_connection(db_file_path: str):
 	connection = None
 
 	try:
-		connection = sqlite3.connect(db_file)
+		connection = sqlite3.connect(db_file_path)
 	except Exception as e:
 		print(e)
 

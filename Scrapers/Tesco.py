@@ -4,10 +4,24 @@ from Scrapers.common import *
 
 
 class ProductPageScraper(Scraper):
-	def __init__(self, driver: webdriver):
+	""""Scraper to scrape a product page for product information"""
+	def __init__(self, driver: WebDriver):
+		""""Constructor for ProductPageScraper
+
+		Calls superclass constructor
+		:parameter driver: Driver for the scraper to use
+		:type driver: WebDriver
+		"""
 		Scraper.__init__(self, driver)
 
 	def scrape(self, url: str) -> Product:
+		""""Scrape a Product page
+
+		:parameter url: URL to scrape
+		:type url: str
+		:returns: Product data from the given url
+		:rtype: Product
+		"""
 		self._current_URL = url
 		soup = self._make_soup(url)
 		main_col = soup.find('div', attrs={'class': 'product-details-page'})
@@ -45,15 +59,42 @@ class ProductPageScraper(Scraper):
 
 
 class CategoryPageScraper(ContinuousScraper):
-	def __init__(self, driver: webdriver, init_url: str = "", url_prefix: str = ""):
+	""""Scraper to scrape a all pages in a category
+
+	:ivar url_prefix: a prefix for the scraped urls to make a full URL
+	:vartype url_prefix: str
+	"""
+	def __init__(self, driver: WebDriver, init_url: str = "", url_prefix: str = ""):
+		"""Constructor for CategoryPageScraper
+		:parameter driver: Driver for the scraper to use
+		:type driver: WebDriver
+		:parameter init_url: Initial URL to scrape
+		:type init_url: str
+		:parameter url_prefix: A prefix for the scraped urls to make a full URL
+		:type url_prefix: str
+		"""
 		ContinuousScraper.__init__(self, driver, url_prefix + init_url)
 		self.url_prefix = url_prefix
 
 	@staticmethod
 	def __find_next_url(soup: BeautifulSoup) -> str:
+		"""Find the next url to be scraped
+
+		:parameter soup: Soup to search for the next URL
+		:type soup: BeautifulSoup
+		:returns: Next URL
+		:rtype: str
+		"""
 		return soup.find('a', attrs={'title': 'Go to results page'}).get('href')
 
 	def scrape(self, url: str) -> List[str]:
+		""""Scrape all pages in a category
+
+		:parameter url: URL to scrape
+		:type url: str
+		:returns: Product URLs from the given category page
+		:rtype: List[str]
+		"""
 		urls = []
 		soup = self._make_soup(url)
 		for a in soup.find_all('li', attrs={'class': 'product-list--list-item'}):
@@ -70,12 +111,33 @@ class CategoryPageScraper(ContinuousScraper):
 
 
 class HomePageScraper(Scraper):
-	def __init__(self, driver: webdriver, url_prefix: str = "", max_deps: int = 5):
+	""""Scraper to scrape the homepage for category USLs
+
+	:ivar url_prefix: A prefix for the scraped urls to make a full URL
+	:vartype url_prefix: str
+	:ivar __MAX_DEPS: Maximum number of categories to return
+	"""
+	def __init__(self, driver: WebDriver, url_prefix: str = "", max_deps: int = 5):
+		""""
+		:parameter driver: Driver for the scraper to use
+		:type driver: WebDriver
+		:parameter url_prefix: a prefix for the scraped urls to make a full URL
+		:type url_prefix: str
+		:parameter max_deps: Maximum number of categories to return
+		:type max_deps: int
+		"""
 		Scraper.__init__(self, driver)
 		self.url_prefix = url_prefix
 		self.__MAX_DEPS = max_deps
 
 	def scrape(self, url: str) -> List[str]:
+		""""Scrape all pages in a category
+
+		:parameter url: URL to scrape
+		:type url: str
+		:returns: Return category URLs from the homepage
+		:rtype: List[str]
+		"""
 		urls = []
 		self._current_URL = url
 		soup = self._make_soup(url)

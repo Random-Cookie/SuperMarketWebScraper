@@ -4,6 +4,7 @@ import subprocess
 import time
 from threading import Lock
 
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 from Scrapers.Tesco import *
@@ -53,8 +54,9 @@ def write_product(connection, product: Product):
 		try:
 			cur.execute(prod_sql, prod_list)
 			for allergen in product.allergens:
-				cur.execute(allergen_sql, [allergen])
-				allergen_id = cur.execute(get_allergen_id, [allergen]).fetchone()[0]
+				stripped_allergen = allergen.strip()
+				cur.execute(allergen_sql, [stripped_allergen])
+				allergen_id = cur.execute(get_allergen_id, [stripped_allergen]).fetchone()[0]
 				cur.execute(allergen_product_sql, [product.id, allergen_id])
 			connection.commit()
 		except Exception as e:
