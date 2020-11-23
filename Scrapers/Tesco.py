@@ -31,24 +31,27 @@ class ProductPageScraper(Scraper):
 			try:
 				product.name = main_col.find('h1', attrs={'class': 'product-details-tile__title'}).text
 			except:
-				pass
+				return product
 			try:
 				product.price = float(main_col.find('span', attrs={'class': 'value'}).text)
 			except:
-				pass
+				return product
 			try:
 				portions_text = main_col.find('div', attrs={'id': 'uses'}).find('p', attrs={'class': 'product-info-block__content'}).text
 				portions = re.findall(r'\d+', portions_text)
 				if portions and portions[0] != "0":
 					product.servings = portions[0]
-					product.price_per_serving = round(product.price / int(product.servings), 2)
+					product.price_per_serving = round(product.price / portions[0], 2)
 			except:
 				pass
 			try:
 				allergen_tags = main_col.find('div', attrs={'id': 'ingredients'}).find_all('strong')
 				for allergen_tag in allergen_tags:
-					if allergen_tag.text not in product.allergens and "INGREDIENTS" not in allergen_tag.text:
-						product.allergens.append(allergen_tag.text)
+					allergen_items = re.split(r"[,()[\]{}]", allergen_tag.text)
+					for item in allergen_items:
+						item = item.strip(" ,.()[]{}").lower()
+						if item not in product.allergens and "ingredients" not in item:
+							product.allergens.append(item)
 			except:
 				pass
 		except Exception as e:
@@ -104,7 +107,11 @@ class CategoryPageScraper(ContinuousScraper):
 				pass
 		try:
 			self._current_URL = self._next_URL
-			self._next_URL = self.url_prefix + self.__find_next_url(soup)
+			next_url = self.__find_next_url(soup)
+			if next_url is not None:
+				self._next_URL = self.url_prefix + next_url
+			else:
+				self._next_URL = next_url
 		except:
 			pass
 		return urls
