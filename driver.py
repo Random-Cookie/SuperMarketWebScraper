@@ -3,10 +3,8 @@ import sqlite3
 import subprocess
 import time
 from threading import Lock
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
 from Scrapers.Tesco import *
 
 CHROMEDRIVER_PATH = 'res/chromedriver.exe'  # chromedriver.exe path
@@ -14,9 +12,9 @@ URL_PREFIX = "https://www.tesco.com"  # URL prefix for scrapers
 DATABASE = "test.db"  # db to connect to
 # user agent for chromedriver
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
-DEBUG_INFO = True  # print debug info?
+DEBUG_INFO = False  # print debug info?
 WRITE_LOCK = Lock()  # lock primitive for db access
-MAX_CATEGORY_WORKERS = 1  # max concurrent categories
+MAX_CATEGORY_WORKERS = 3  # max concurrent categories
 PRODUCTS_ON_PAGE = 24  # max product page scrapers
 
 
@@ -66,6 +64,14 @@ def write_product(connection, product: Product) -> int:
 			return cur.lastrowid
 
 
+def create_driver(chromedriver_path, options) -> webdriver.Chrome:
+	return webdriver.Chrome(chromedriver_path, options=options)
+
+
+def create_prod_scraper(driver) -> ProductPageScraper:
+	return ProductPageScraper(driver)
+
+
 def scrape_category_page(url, prod_scraper, ret: bool = False) -> bool:
 	"""Scrape a category page with products on it
 
@@ -91,21 +97,19 @@ def scrape_category(cat_url):
 	:param cat_url: category url
 	"""
 	# Setup for creating drivers
-	opts = Options()
-	opts.headless = True
-	opts.add_argument('user-agent={0}'.format(USER_AGENT))
-	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=opts)
+	opt = Options()
+	opt.headless = True
+	opt.add_argument('user-agent={0}'.format(USER_AGENT))
+	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=opt)
 	# Setup cat scraper and cat variables
 	cat_scraper = CategoryPageScraper(driver, cat_url, URL_PREFIX)
 	cat_start_time = time.time()
 	cat_product_count = 0
-	# Create the drivers and product scrapers for scraping product pages
-	drivers = [] * PRODUCTS_ON_PAGE
-	prod_scrapers = [] * PRODUCTS_ON_PAGE
-	for i in range(PRODUCTS_ON_PAGE):
-		# create a driver and prod scraper for each product on a cat page
-		drivers.append(webdriver.Chrome(CHROMEDRIVER_PATH, options=opts))  # list drivers for closing later
-		prod_scrapers.append(ProductPageScraper(drivers[i]))
+	chromedriver_paths = [CHROMEDRIVER_PATH] * PRODUCTS_ON_PAGE
+	opts = [opt] * PRODUCTS_ON_PAGE
+	with concurrent.futures.ThreadPoolExecutor(max_workers=PRODUCTS_ON_PAGE) as driver_prod_maker:
+		drivers = list(driver_prod_maker.map(create_driver, chromedriver_paths, opts))
+		prod_scrapers = list(driver_prod_maker.map(create_prod_scraper, drivers))
 	# For each page in the category
 	while not cat_scraper.get_next_url() is None:
 		# scrape the next page
@@ -113,7 +117,7 @@ def scrape_category(cat_url):
 		page_start_time = time.time()
 		# Use one thread to scrape each page using the scrapers and urls is appropriate arrays
 		with concurrent.futures.ThreadPoolExecutor(max_workers=PRODUCTS_ON_PAGE) as cat_executor:
-			products_counted = cat_executor.map(scrape_category_page, urls, prod_scrapers)
+			products_counted = list(cat_executor.map(scrape_category_page, urls, prod_scrapers))
 		# sum the added products
 		product_count = sum(products_counted)
 		if DEBUG_INFO:
@@ -125,8 +129,8 @@ def scrape_category(cat_url):
 	print(" Added " + str(cat_product_count) + " products in " + convert(time.time() - cat_start_time))
 	# Close the drivers
 	driver.close()
-	for i in range(PRODUCTS_ON_PAGE):
-		drivers[i].close()
+	for driver in drivers:
+		driver.close()
 
 
 # start of script
