@@ -30,6 +30,11 @@ TOTAL_CATEGORIES = args.TOTAL_CATEGORIES
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
 # lock primitive for db access
 WRITE_LOCK = Lock()
+# driver options
+DRIVER_OPTIONS = Options()
+DRIVER_OPTIONS.headless = True
+DRIVER_OPTIONS.add_argument('user-agent={0}'.format(USER_AGENT))
+DRIVER_OPTIONS.add_argument('log-level=3')
 
 
 def convert(seconds) -> str:
@@ -78,8 +83,8 @@ def write_product(connection, product: Product) -> int:
 			return cur.lastrowid
 
 
-def create_driver(chromedriver_path, options) -> webdriver.Chrome:
-	return webdriver.Chrome(chromedriver_path, options=options)
+def create_driver(chromedriver_path) -> webdriver.Chrome:
+	return webdriver.Chrome(chromedriver_path, options=DRIVER_OPTIONS)
 
 
 def create_prod_scraper(driver) -> ProductPageScraper:
@@ -110,20 +115,14 @@ def scrape_category(cat_url):
 
 	:param cat_url: category url
 	"""
-	# Setup for creating drivers
-	opt = Options()
-	opt.headless = True
-	opt.add_argument('user-agent={0}'.format(USER_AGENT))
-	opt.add_argument('log-level=3')
-	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=opt)
+	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=DRIVER_OPTIONS)
 	# Setup cat scraper and cat variables
 	cat_scraper = CategoryPageScraper(driver, cat_url, URL_PREFIX)
 	cat_start_time = time.time()
 	cat_product_count = 0
 	chromedriver_paths = [CHROMEDRIVER_PATH] * PRODUCTS_ON_PAGE
-	opts = [opt] * PRODUCTS_ON_PAGE
 	with concurrent.futures.ThreadPoolExecutor(max_workers=PRODUCTS_ON_PAGE) as driver_prod_maker:
-		drivers = list(driver_prod_maker.map(create_driver, chromedriver_paths, opts))
+		drivers = list(driver_prod_maker.map(create_driver, chromedriver_paths))
 		prod_scrapers = list(driver_prod_maker.map(create_prod_scraper, drivers))
 	# For each page in the category
 	while not cat_scraper.get_next_url() is None:
@@ -150,12 +149,7 @@ def scrape_category(cat_url):
 
 # start of script
 overall_start_time = time.time()
-# Create a diver for the home scraper
-h_opts = Options()
-h_opts.headless = True
-h_opts.add_argument('user-agent={0}'.format(USER_AGENT))
-h_opts.add_argument('log-level=3')
-home_driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=h_opts)
+home_driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=DRIVER_OPTIONS)
 # Scrape the homepage (driver, URL_PREFIX, #Categories)
 home_scraper = HomePageScraper(home_driver, URL_PREFIX, TOTAL_CATEGORIES)
 cat_urls = home_scraper.scrape(URL_PREFIX + '/groceries/en-GB/')
