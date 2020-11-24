@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="test">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.15">
+    <root id="1">
+      <ServerVersion>3.31.1</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <collation id="3" parent="1" name="BINARY"/>
+    <collation id="4" parent="1" name="NOCASE"/>
+    <collation id="5" parent="1" name="RTRIM"/>
+    <table id="6" parent="2" name="Allergens"/>
+    <table id="7" parent="2" name="ProductAllergen"/>
+    <table id="8" parent="2" name="Products"/>
+    <table id="9" parent="2" name="sqlite_master">
+      <System>1</System>
+    </table>
+    <column id="10" parent="6" name="AllergenID">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="11" parent="6" name="Name">
+      <Position>2</Position>
+      <DataType>TEXT|0s</DataType>
+    </column>
+    <index id="12" parent="6" name="sqlite_autoindex_Allergens_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Name</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="13" parent="6">
+      <ColNames>AllergenID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="14" parent="6">
+      <ColNames>Name</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_Allergens_1</UnderlyingIndexName>
+    </key>
+    <column id="15" parent="7" name="ProductID">
+      <Position>1</Position>
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="7" name="AllergenID">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="8" name="ProductID">
+      <Position>1</Position>
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="8" name="Name">
+      <Position>2</Position>
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="8" name="Price">
+      <Position>3</Position>
+      <DataType>REAL|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="8" name="Servings">
+      <Position>4</Position>
+      <DataType>REAL|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="8" name="PricePerServing">
+      <Position>5</Position>
+      <DataType>REAL|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="9" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="23" parent="9" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="24" parent="9" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="25" parent="9" name="rootpage">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="26" parent="9" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+  </database-model>
+</dataSource>
