@@ -1,3 +1,4 @@
+import argparse
 import concurrent.futures
 import sqlite3
 import subprocess
@@ -7,15 +8,28 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from Scrapers.Tesco import *
 
-CHROMEDRIVER_PATH = 'res/chromedriver.exe'  # chromedriver.exe path
-URL_PREFIX = "https://www.tesco.com"  # URL prefix for scrapers
-DATABASE = "test.db"  # db to connect to
+# parser setup
+parser = argparse.ArgumentParser(description="ArgParser")
+parser.add_argument("--CHROMEDRIVER_PATH", type=str, default="res/chromedriver.exe", help="path for chromedriver.exe")
+parser.add_argument("--URL_PREFIX", type=str, default="https://www.tesco.com", help="url prefix for the scraper")
+parser.add_argument("--DATABASE", type=str, default="TTDB.db", help="database to connect to")
+parser.add_argument("--DEBUG_INFO", action='store_true', default=False, dest='DEBUG_INFO', help="print debug data?")
+parser.add_argument("--MAX_CATEGORY_WORKERS", type=int, default=1, help="number of concurrent categories")
+parser.add_argument("--PRODUCTS_ON_PAGE", type=int, default=24, help="Number of products per page")
+parser.add_argument("--TOTAL_CATEGORIES", type=int, default=5, help="Total Number of categories")
+args = parser.parse_args()
+# apply commandline args
+CHROMEDRIVER_PATH = args.CHROMEDRIVER_PATH
+URL_PREFIX = args.URL_PREFIX
+DATABASE = args.DATABASE
+DEBUG_INFO = args.DEBUG_INFO
+MAX_CATEGORY_WORKERS = args.MAX_CATEGORY_WORKERS
+PRODUCTS_ON_PAGE = args.PRODUCTS_ON_PAGE
+TOTAL_CATEGORIES = args.TOTAL_CATEGORIES
 # user agent for chromedriver
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
-DEBUG_INFO = False  # print debug info?
-WRITE_LOCK = Lock()  # lock primitive for db access
-MAX_CATEGORY_WORKERS = 3  # max concurrent categories
-PRODUCTS_ON_PAGE = 24  # max product page scrapers
+# lock primitive for db access
+WRITE_LOCK = Lock()
 
 
 def convert(seconds) -> str:
@@ -100,6 +114,7 @@ def scrape_category(cat_url):
 	opt = Options()
 	opt.headless = True
 	opt.add_argument('user-agent={0}'.format(USER_AGENT))
+	opt.add_argument('log-level=3')
 	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=opt)
 	# Setup cat scraper and cat variables
 	cat_scraper = CategoryPageScraper(driver, cat_url, URL_PREFIX)
@@ -139,9 +154,10 @@ overall_start_time = time.time()
 h_opts = Options()
 h_opts.headless = True
 h_opts.add_argument('user-agent={0}'.format(USER_AGENT))
+h_opts.add_argument('log-level=3')
 home_driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=h_opts)
 # Scrape the homepage (driver, URL_PREFIX, #Categories)
-home_scraper = HomePageScraper(home_driver, URL_PREFIX, 6)
+home_scraper = HomePageScraper(home_driver, URL_PREFIX, TOTAL_CATEGORIES)
 cat_urls = home_scraper.scrape(URL_PREFIX + '/groceries/en-GB/')
 home_driver.close()
 
