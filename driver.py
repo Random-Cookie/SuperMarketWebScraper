@@ -6,14 +6,15 @@ import time
 from threading import Lock
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from Scrapers.Tesco import *
+from Scrapers.common import *
+import Scrapers.tesco
 
 # parser setup
 parser = argparse.ArgumentParser(description="ArgParser")
 parser.add_argument("--supermarket", type=str, help="choose supermarket preset")
 parser.add_argument("--CHROMEDRIVER_PATH", type=str, default="res/chromedriver.exe", help="path for chromedriver.exe")
 parser.add_argument("--URL_PREFIX", type=str, default="https://www.tesco.com", help="url prefix for the scraper")
-parser.add_argument("--DATABASE", type=str, default="TTDB.db", help="database to connect to")
+parser.add_argument("--DATABASE", type=str, default="test.db", help="database to connect to")
 parser.add_argument("--MAX_CATEGORY_WORKERS", type=int, default=1, help="number of concurrent categories")
 parser.add_argument("--PRODUCTS_ON_PAGE", type=int, default=24, help="Number of products per page")
 parser.add_argument("--TOTAL_CATEGORIES", type=int, default=5, help="Total Number of categories")
@@ -119,9 +120,8 @@ def create_driver(chromedriver_path) -> webdriver.Chrome:
 	return webdriver.Chrome(chromedriver_path, options=DRIVER_OPTIONS)
 
 
-def create_prod_scraper(driver) ->
-	:
-	return ProductPageScraper(driver)
+def create_prod_scraper(driver) -> Scraper:
+	return Scrapers.tesco.ProductPageScraper(driver)
 
 
 def scrape_category_page(url, prod_scraper, ret: bool = False) -> bool:
@@ -150,7 +150,7 @@ def scrape_category(cat_url):
 	"""
 	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=DRIVER_OPTIONS)
 	# Setup cat scraper and cat variables
-	cat_scraper = CategoryPageScraper(driver, cat_url, URL_PREFIX)
+	cat_scraper = Scrapers.tesco.CategoryPageScraper(driver, cat_url, URL_PREFIX)
 	cat_start_time = time.time()
 	cat_product_count = 0
 	chromedriver_paths = [CHROMEDRIVER_PATH] * PRODUCTS_ON_PAGE
@@ -184,7 +184,7 @@ def scrape_category(cat_url):
 overall_start_time = time.time()
 home_driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=DRIVER_OPTIONS)
 # Scrape the homepage (driver, URL_PREFIX, #Categories)
-home_scraper = HomePageScraper(home_driver, URL_PREFIX, TOTAL_CATEGORIES)
+home_scraper = Scrapers.tesco.HomePageScraper(home_driver, URL_PREFIX, TOTAL_CATEGORIES)
 cat_urls = home_scraper.scrape(URL_PREFIX + '/groceries/en-GB/')
 home_driver.close()
 
