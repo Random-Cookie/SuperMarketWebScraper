@@ -10,14 +10,46 @@ from Scrapers.Tesco import *
 
 # parser setup
 parser = argparse.ArgumentParser(description="ArgParser")
+parser.add_argument("--website", type=str, help="choose website preset")
 parser.add_argument("--CHROMEDRIVER_PATH", type=str, default="res/chromedriver.exe", help="path for chromedriver.exe")
 parser.add_argument("--URL_PREFIX", type=str, default="https://www.tesco.com", help="url prefix for the scraper")
 parser.add_argument("--DATABASE", type=str, default="TTDB.db", help="database to connect to")
-parser.add_argument("--DEBUG_INFO", action='store_true', default=False, dest='DEBUG_INFO', help="print debug data?")
 parser.add_argument("--MAX_CATEGORY_WORKERS", type=int, default=1, help="number of concurrent categories")
 parser.add_argument("--PRODUCTS_ON_PAGE", type=int, default=24, help="Number of products per page")
 parser.add_argument("--TOTAL_CATEGORIES", type=int, default=5, help="Total Number of categories")
+parser.add_argument("--DEBUG_INFO", action='store_true', default=False, dest='DEBUG_INFO', help="print debug data?")
 args = parser.parse_args()
+if args.website == "tesco":
+	if args.DATABASE == "TTDB.db":
+		args.DATABASE = "tesco"
+if args.website == "asda":
+	if args.URL_PREFIX == "":
+		args.URL_PREFIX = ""  # TODO
+	if args.DATABASE == "TTDB.db":
+		args.DATABASE = "asda.db"
+	if args.PRODUCTS_ON_PAGE == 24:
+		args.PRODUCTS_ON_PAGE = 0  # TODO
+	if args.TOTAL_CATEGORIES == 5:
+		args.TOTAL_CATEGORIES = 0  # TODO
+if args.website == "morrisons":
+	if args.URL_PREFIX == "":
+		args.URL_PREFIX = ""  # TODO
+	if args.DATABASE == "TTDB.db":
+		args.DATABASE = "morrisons.db"
+	if args.PRODUCTS_ON_PAGE == 24:
+		args.PRODUCTS_ON_PAGE = 0  # TODO
+	if args.TOTAL_CATEGORIES == 5:
+		args.TOTAL_CATEGORIES = 0  # TODO
+if args.website == "sainsburys":
+	if args.URL_PREFIX == "":
+		args.URL_PREFIX = ""  # TODO
+	if args.DATABASE == "TTDB.db":
+		args.DATABASE = "sainsburys.db"
+	if args.PRODUCTS_ON_PAGE == 24:
+		args.PRODUCTS_ON_PAGE = 0  # TODO
+	if args.TOTAL_CATEGORIES == 5:
+		args.TOTAL_CATEGORIES = 0  # TODO
+
 # apply commandline args
 CHROMEDRIVER_PATH = args.CHROMEDRIVER_PATH
 URL_PREFIX = args.URL_PREFIX

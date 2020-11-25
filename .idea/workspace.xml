@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6f054de-84e5-4948-a1cb-67166d031365" name="Default Changelist" comment="Added command line args&#10;Added autorun.bat for automation">
+    <list default="true" id="e6f054de-84e5-4948-a1cb-67166d031365" name="Default Changelist" comment="Optimisation of driver options">
       <change beforePath="$PROJECT_DIR$/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +36,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/driver.py" />
-      <option name="PARAMETERS" value="--DATABASE &quot;test.db&quot; --DEBUG_INFO --TOTAL_CATEGORIES 6" />
+      <option name="PARAMETERS" value="--website &quot;asda&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -53,10 +53,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added command line args&#10;Added autorun.bat for automation&#10;Changed logging level for chrome drivers to prevent console spam" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606257554278">
+    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606326994674">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606257554278" />
+    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606326994674" />
     <state x="111" y="75" key="CommitChangelistDialog2" timestamp="1606256753987">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -84,7 +84,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$DBTests.coverage" NAME="DBTests Coverage Results" MODIFIED="1595714117292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$Params.coverage" NAME="Params Coverage Results" MODIFIED="1606257545608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$Params.coverage" NAME="Params Coverage Results" MODIFIED="1606326445034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$driver.coverage" NAME="driver Coverage Results" MODIFIED="1606253972470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$AllParamTest.coverage" NAME="AllParamTest Coverage Results" MODIFIED="1606239844691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$CommandLineParams.coverage" NAME="CommandLineParams Coverage Results" MODIFIED="1606187896292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
