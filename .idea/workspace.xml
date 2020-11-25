@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e6f054de-84e5-4948-a1cb-67166d031365" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scrapers/Asda.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/asda.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scrapers/Morrisons.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/morrisons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scrapers/Sainsburys.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/sainsburys.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scrapers/Tesco.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/tesco.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606327290027</updated>
-      <workItem from="1606327291260" duration="1200000" />
+      <workItem from="1606327291260" duration="2091000" />
     </task>
     <task id="LOCAL-00002" summary="changed --website to --supermarket">
       <created>1606327377982</created>
@@ -82,7 +78,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606327377982</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="-Modified scraper class names&#10;-Imported classes into driver.py&#10;-Changed names in driver.py to be supermarket specific&#10;-Changed default database to test.db (for testing)&#10;-Changed return of create_prod_scraper to Scraper">
+      <created>1606329579215</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606329579215</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,57 +95,62 @@
     <MESSAGE value="Added command line args&#10;Added autorun.bat for automation&#10;Changed logging level for chrome drivers to prevent console spam" />
     <MESSAGE value="Added --website commandline option for using site presets" />
     <MESSAGE value="changed --website to --supermarket" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed --website to --supermarket" />
+    <MESSAGE value="-Modified scraper class names&#10;-Imported classes into driver.py&#10;-Changed names in driver.py to be supermarket specific&#10;-Changed default database to test.db (for testing)&#10;-Changed return of create_prod_scraper to Scraper" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Modified scraper class names&#10;-Imported classes into driver.py&#10;-Changed names in driver.py to be supermarket specific&#10;-Changed default database to test.db (for testing)&#10;-Changed return of create_prod_scraper to Scraper" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606329288415">
+    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606329758596">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329288415" />
-    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2" timestamp="1606327377305">
+    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329758596" />
+    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2" timestamp="1606329578477">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606327377305" />
+    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329578477" />
     <state x="740" y="287" key="FileChooserDialogImpl" timestamp="1606256447488">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="287" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606256447488" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1606329248624">
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1606330122907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329248624" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1606329248624">
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606330122907" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1606330122907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329248624" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1606329248624">
+    <state width="1877" height="348" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606330122907" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1606330122907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329248624" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1606329248624">
+    <state width="1877" height="348" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606330122907" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1606330122907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329248624" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1606329248531">
+    <state width="1877" height="348" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606330122907" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1606330122805">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329248531" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1606329248531">
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606330122805" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1606330122805">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329248531" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1606329248531">
+    <state width="1877" height="348" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606330122805" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1606330122805">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329248531" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1606329248531">
+    <state width="1877" height="348" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606330122805" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1606330122805">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329248531" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1606327379385">
+    <state width="1877" height="348" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606330122805" />
+    <state x="764" y="240" key="RollbackChangesDialog" timestamp="1606329897771">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606327379385" />
+    <state x="764" y="240" key="RollbackChangesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329897771" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1606329580398">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329580398" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -153,7 +161,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$DBTests.coverage" NAME="DBTests Coverage Results" MODIFIED="1595714117292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$Params.coverage" NAME="Params Coverage Results" MODIFIED="1606329248500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$Params.coverage" NAME="Params Coverage Results" MODIFIED="1606330122776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$driver.coverage" NAME="driver Coverage Results" MODIFIED="1606253972470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$AllParamTest.coverage" NAME="AllParamTest Coverage Results" MODIFIED="1606239844691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$CommandLineParams.coverage" NAME="CommandLineParams Coverage Results" MODIFIED="1606187896292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

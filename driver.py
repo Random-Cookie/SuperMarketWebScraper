@@ -120,6 +120,14 @@ def create_driver(chromedriver_path) -> webdriver.Chrome:
 	return webdriver.Chrome(chromedriver_path, options=DRIVER_OPTIONS)
 
 
+def create_home_scraper(driver) -> Scraper:
+	return Scrapers.tesco.HomePageScraper(driver, URL_PREFIX, TOTAL_CATEGORIES)
+
+
+def create_category_scraper(driver, cat_url) -> ContinuousScraper:
+	return Scrapers.tesco.CategoryPageScraper(driver, cat_url, URL_PREFIX)
+
+
 def create_prod_scraper(driver) -> Scraper:
 	return Scrapers.tesco.ProductPageScraper(driver)
 
@@ -150,7 +158,7 @@ def scrape_category(cat_url):
 	"""
 	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=DRIVER_OPTIONS)
 	# Setup cat scraper and cat variables
-	cat_scraper = Scrapers.tesco.CategoryPageScraper(driver, cat_url, URL_PREFIX)
+	cat_scraper = create_category_scraper(driver, cat_url)
 	cat_start_time = time.time()
 	cat_product_count = 0
 	chromedriver_paths = [CHROMEDRIVER_PATH] * PRODUCTS_ON_PAGE
@@ -184,7 +192,7 @@ def scrape_category(cat_url):
 overall_start_time = time.time()
 home_driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=DRIVER_OPTIONS)
 # Scrape the homepage (driver, URL_PREFIX, #Categories)
-home_scraper = Scrapers.tesco.HomePageScraper(home_driver, URL_PREFIX, TOTAL_CATEGORIES)
+home_scraper = create_home_scraper(home_driver)
 cat_urls = home_scraper.scrape(URL_PREFIX + '/groceries/en-GB/')
 home_driver.close()
 
