@@ -10,7 +10,7 @@ from Scrapers.Tesco import *
 
 # parser setup
 parser = argparse.ArgumentParser(description="ArgParser")
-parser.add_argument("--website", type=str, help="choose website preset")
+parser.add_argument("--supermarket", type=str, help="choose supermarket preset")
 parser.add_argument("--CHROMEDRIVER_PATH", type=str, default="res/chromedriver.exe", help="path for chromedriver.exe")
 parser.add_argument("--URL_PREFIX", type=str, default="https://www.tesco.com", help="url prefix for the scraper")
 parser.add_argument("--DATABASE", type=str, default="TTDB.db", help="database to connect to")
@@ -19,10 +19,10 @@ parser.add_argument("--PRODUCTS_ON_PAGE", type=int, default=24, help="Number of 
 parser.add_argument("--TOTAL_CATEGORIES", type=int, default=5, help="Total Number of categories")
 parser.add_argument("--DEBUG_INFO", action='store_true', default=False, dest='DEBUG_INFO', help="print debug data?")
 args = parser.parse_args()
-if args.website == "tesco":
+if args.supermarket == "tesco":
 	if args.DATABASE == "TTDB.db":
 		args.DATABASE = "tesco"
-if args.website == "asda":
+if args.supermarket == "asda":
 	if args.URL_PREFIX == "":
 		args.URL_PREFIX = ""  # TODO
 	if args.DATABASE == "TTDB.db":
@@ -31,7 +31,7 @@ if args.website == "asda":
 		args.PRODUCTS_ON_PAGE = 0  # TODO
 	if args.TOTAL_CATEGORIES == 5:
 		args.TOTAL_CATEGORIES = 0  # TODO
-if args.website == "morrisons":
+if args.supermarket == "morrisons":
 	if args.URL_PREFIX == "":
 		args.URL_PREFIX = ""  # TODO
 	if args.DATABASE == "TTDB.db":
@@ -40,7 +40,7 @@ if args.website == "morrisons":
 		args.PRODUCTS_ON_PAGE = 0  # TODO
 	if args.TOTAL_CATEGORIES == 5:
 		args.TOTAL_CATEGORIES = 0  # TODO
-if args.website == "sainsburys":
+if args.supermarket == "sainsburys":
 	if args.URL_PREFIX == "":
 		args.URL_PREFIX = ""  # TODO
 	if args.DATABASE == "TTDB.db":
@@ -119,7 +119,8 @@ def create_driver(chromedriver_path) -> webdriver.Chrome:
 	return webdriver.Chrome(chromedriver_path, options=DRIVER_OPTIONS)
 
 
-def create_prod_scraper(driver) -> ProductPageScraper:
+def create_prod_scraper(driver) ->
+	:
 	return ProductPageScraper(driver)
 
 
