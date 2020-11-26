@@ -8,10 +8,11 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from Scrapers.common import *
 import Scrapers.tesco
+import Scrapers.morrisons
 
 # parser setup
 parser = argparse.ArgumentParser(description="ArgParser")
-parser.add_argument("--supermarket", type=str, help="choose supermarket preset")
+parser.add_argument("--supermarket", type=str, default="tesco", help="choose supermarket preset", required=True)
 parser.add_argument("--CHROMEDRIVER_PATH", type=str, default="res/chromedriver.exe", help="path for chromedriver.exe")
 parser.add_argument("--URL_PREFIX", type=str, default="https://www.tesco.com", help="url prefix for the scraper")
 parser.add_argument("--DATABASE", type=str, default="test.db", help="database to connect to")
@@ -34,7 +35,7 @@ if args.supermarket == "asda":
 		args.TOTAL_CATEGORIES = 0  # TODO
 if args.supermarket == "morrisons":
 	if args.URL_PREFIX == "":
-		args.URL_PREFIX = ""  # TODO
+		args.URL_PREFIX = "https://groceries.morrisons.com/browse"  # TODO
 	if args.DATABASE == "TTDB.db":
 		args.DATABASE = "morrisons.db"
 	if args.PRODUCTS_ON_PAGE == 24:
@@ -71,6 +72,11 @@ DRIVER_OPTIONS.add_argument('log-level=3')
 
 
 def convert(seconds) -> str:
+	"""convert seconds to H:M:S
+
+	:param seconds: number of seconds
+	:return: "H:M:S"
+	"""
 	seconds = seconds % (24 * 3600)
 	hour = seconds // 3600
 	seconds %= 3600
@@ -81,6 +87,11 @@ def convert(seconds) -> str:
 
 # create and return a connection to a database file
 def create_connection(db_file) -> sqlite3.Connection:
+	"""Create a connection to the database
+
+	:param db_file: database to connect to
+	:return: a database connection
+	"""
 	connection = None
 	try:
 		connection = sqlite3.connect(db_file)
@@ -91,6 +102,12 @@ def create_connection(db_file) -> sqlite3.Connection:
 
 # write a product to the database
 def write_product(connection, product: Product) -> int:
+	"""Write a product to the database
+
+	:param connection: connection to the database
+	:param product: product to write
+	:return: lastrowid
+	"""
 	prod_list = [product.id, product.name, product.price, product.servings, product.price_per_serving]
 	prod_sql = ('INSERT OR IGNORE INTO Products(ProductID, Name, Price, Servings, PricePerServing)\n'
 				'VALUES(?, ?, ?, ?, ?)')
@@ -117,19 +134,61 @@ def write_product(connection, product: Product) -> int:
 
 
 def create_driver(chromedriver_path) -> webdriver.Chrome:
+	"""Create a driver for the scrapers
+
+	:param chromedriver_path: Path of the chromedriver.exe
+	:return: a driver
+	"""
 	return webdriver.Chrome(chromedriver_path, options=DRIVER_OPTIONS)
 
 
 def create_home_scraper(driver) -> Scraper:
-	return Scrapers.tesco.HomePageScraper(driver, URL_PREFIX, TOTAL_CATEGORIES)
+	"""Create a home page scraper
+
+	:param driver: Driver to use
+	:return: a homepage scraper
+	"""
+	if args.supermarket == "asda":
+		pass
+	elif args.supermarket == "morrisons":
+		return Scrapers.morrisons.HomePageScraper(driver, URL_PREFIX, 6)
+	elif args.supermarket == "sainsburys":
+		pass
+	else:
+		return Scrapers.tesco.HomePageScraper(driver, URL_PREFIX, TOTAL_CATEGORIES)
 
 
 def create_category_scraper(driver, cat_url) -> ContinuousScraper:
-	return Scrapers.tesco.CategoryPageScraper(driver, cat_url, URL_PREFIX)
+	"""Create a category scraper
+
+	:param driver: Driver to use
+	:param cat_url: the category url
+	:return: a category scraper
+	"""
+	if args.supermarket == "asda":
+		pass
+	elif args.supermarket == "morrisons":
+		pass
+	elif args.supermarket == "sainsburys":
+		pass
+	else:
+		return Scrapers.tesco.CategoryPageScraper(driver, cat_url, URL_PREFIX)
 
 
 def create_prod_scraper(driver) -> Scraper:
-	return Scrapers.tesco.ProductPageScraper(driver)
+	"""Create a product scraper
+
+	:param driver: driver to use
+	:return: a product scraper
+	"""
+	if args.supermarket == "asda":
+		pass
+	elif args.supermarket == "morrisons":
+		pass
+	elif args.supermarket == "sainsburys":
+		pass
+	else:
+		return Scrapers.tesco.ProductPageScraper(driver)
 
 
 def scrape_category_page(url, prod_scraper, ret: bool = False) -> bool:
@@ -156,7 +215,7 @@ def scrape_category(cat_url):
 
 	:param cat_url: category url
 	"""
-	driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=DRIVER_OPTIONS)
+	driver = create_driver(CHROMEDRIVER_PATH)
 	# Setup cat scraper and cat variables
 	cat_scraper = create_category_scraper(driver, cat_url)
 	cat_start_time = time.time()
@@ -183,14 +242,14 @@ def scrape_category(cat_url):
 	print("Scraped: " + cat_url)
 	print(" Added " + str(cat_product_count) + " products in " + convert(time.time() - cat_start_time))
 	# Close the drivers
-	driver.close()
-	for driver in drivers:
-		driver.close()
+	cat_scraper.close_driver()
+	for scraper in prod_scrapers:
+		scraper.close_driver()
 
 
 # start of script
 overall_start_time = time.time()
-home_driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=DRIVER_OPTIONS)
+home_driver = create_driver(CHROMEDRIVER_PATH)
 # Scrape the homepage (driver, URL_PREFIX, #Categories)
 home_scraper = create_home_scraper(home_driver)
 cat_urls = home_scraper.scrape(URL_PREFIX + '/groceries/en-GB/')

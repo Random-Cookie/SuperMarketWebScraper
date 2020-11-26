@@ -56,6 +56,10 @@ class Scraper:
 		content = self.__driver.page_source
 		return BeautifulSoup(content, 'html.parser')
 
+	def close_driver(self):
+		self.__driver.close()
+		self.__driver.quit()
+
 	@abstractmethod
 	def scrape(self, url: str):
 		""""Abstract scrape method
