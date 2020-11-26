@@ -57,6 +57,10 @@ class Scraper:
 		return BeautifulSoup(content, 'html.parser')
 
 	def close_driver(self):
+		"""Close the driver for the scraper
+
+		:return: none
+		"""
 		self.__driver.close()
 		self.__driver.quit()
 

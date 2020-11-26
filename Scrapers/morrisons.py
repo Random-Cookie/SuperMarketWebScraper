@@ -31,11 +31,5 @@ class HomePageScraper(Scraper):
 		urls = []
 		self._current_URL = url
 		soup = self._make_soup(url)
-		super_dep_menu = soup.find('ul', attrs={'class': 'menu menu-superdepartment'})
-		super_deps = super_dep_menu.find_all('a')
-		for i in range(self.__MAX_DEPS):
-			dep_menu = self._make_soup(self.url_prefix + super_deps[i].get('href'))
-			list_item = dep_menu.find('li', attrs={'class': 'list-item list-subheader'})
-			a = list_item.find('a')
-			urls.append(a.get('href'))
+		# grab departments
 		return urls

@@ -4,11 +4,13 @@ import sqlite3
 import subprocess
 import time
 from threading import Lock
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from Scrapers.common import *
-import Scrapers.tesco
+
 import Scrapers.morrisons
+import Scrapers.tesco
+from Scrapers.common import *
 
 # parser setup
 parser = argparse.ArgumentParser(description="ArgParser")
@@ -35,7 +37,7 @@ if args.supermarket == "asda":
 		args.TOTAL_CATEGORIES = 0  # TODO
 if args.supermarket == "morrisons":
 	if args.URL_PREFIX == "":
-		args.URL_PREFIX = "https://groceries.morrisons.com/browse"  # TODO
+		args.URL_PREFIX = "https://groceries.morrisons.com/browse"
 	if args.DATABASE == "TTDB.db":
 		args.DATABASE = "morrisons.db"
 	if args.PRODUCTS_ON_PAGE == 24:

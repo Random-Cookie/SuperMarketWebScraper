@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6f054de-84e5-4948-a1cb-67166d031365" name="Default Changelist" comment="-Changed over to creating scrapers using methods&#10;    -For future supermarket implementation">
+    <list default="true" id="e6f054de-84e5-4948-a1cb-67166d031365" name="Default Changelist" comment="-Documentation update&#10;-Driver optimisations&#10;-close_driver() added to common.py&#10;-autorun.bat update&#10;-added res/killChrome.bat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scrapers/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scrapers/morrisons.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/morrisons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scrapers/tesco.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/tesco.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/autorun.bat" beforeDir="false" afterPath="$PROJECT_DIR$/autorun.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/killChromeDriver.bat" beforeDir="false" afterPath="$PROJECT_DIR$/res/killChromeDriver.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.db" beforeDir="false" afterPath="$PROJECT_DIR$/test.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +77,8 @@
       <workItem from="1606332815705" duration="281000" />
       <workItem from="1606333114806" duration="160000" />
       <workItem from="1606338107469" duration="38000" />
-      <workItem from="1606357063086" duration="2342000" />
+      <workItem from="1606357063086" duration="2717000" />
+      <workItem from="1606401164948" duration="1012000" />
     </task>
     <task id="LOCAL-00002" summary="changed --website to --supermarket">
       <created>1606327377982</created>
@@ -101,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606330296242</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="-Documentation update&#10;-Driver optimisations&#10;-close_driver() added to common.py&#10;-autorun.bat update&#10;-added res/killChrome.bat">
+      <created>1606359868346</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1606359868346</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,72 +120,64 @@
     <MESSAGE value="changed --website to --supermarket" />
     <MESSAGE value="-Modified scraper class names&#10;-Imported classes into driver.py&#10;-Changed names in driver.py to be supermarket specific&#10;-Changed default database to test.db (for testing)&#10;-Changed return of create_prod_scraper to Scraper" />
     <MESSAGE value="-Changed over to creating scrapers using methods&#10;    -For future supermarket implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Changed over to creating scrapers using methods&#10;    -For future supermarket implementation" />
+    <MESSAGE value="-Documentation update&#10;-Driver optimisations&#10;-close_driver() added to common.py&#10;-autorun.bat update&#10;-added res/killChrome.bat" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Documentation update&#10;-Driver optimisations&#10;-close_driver() added to common.py&#10;-autorun.bat update&#10;-added res/killChrome.bat" />
   </component>
   <component name="WindowStateProjectService">
     <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606329758596">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329758596" />
-    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2" timestamp="1606333241902">
+    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2" timestamp="1606401258785">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606333241902" />
+    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606401258785" />
     <state x="740" y="287" key="FileChooserDialogImpl" timestamp="1606256447488">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="287" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606256447488" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1606359070726">
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1606359887388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359070726" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1606359070726">
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1606359887388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359070726" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1606359070726">
+    <state width="1877" height="348" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1606359887388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359070726" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1606359070726">
+    <state width="1877" height="348" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1606359887388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359070726" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1606359070635">
+    <state width="1877" height="348" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1606359887389">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359070635" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1606359070635">
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887389" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1606359887388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359070635" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1606359070634">
+    <state width="1877" height="348" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1606359887388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359070634" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1606359070635">
+    <state width="1877" height="348" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1606359887389">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359070635" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887389" />
     <state x="764" y="240" key="RollbackChangesDialog" timestamp="1606333249216">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="764" y="240" key="RollbackChangesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606333249216" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1606333231311">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1606359870431">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606333231311" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359870431" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/driver.py</url>
-          <line>246</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="PRODUCTS_ON_PAGE" language="Python" />
@@ -187,7 +186,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$DBTests.coverage" NAME="DBTests Coverage Results" MODIFIED="1595714117292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$Params.coverage" NAME="Params Coverage Results" MODIFIED="1606359070607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$Params.coverage" NAME="Params Coverage Results" MODIFIED="1606359714101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$driver.coverage" NAME="driver Coverage Results" MODIFIED="1606253972470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$AllParamTest.coverage" NAME="AllParamTest Coverage Results" MODIFIED="1606239844691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$CommandLineParams.coverage" NAME="CommandLineParams Coverage Results" MODIFIED="1606187896292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
