@@ -35,5 +35,11 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="test.db" uuid="308fb465-1a83-4b0a-838a-81b1f493e178">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:test.db</jdbc-url>
+    </data-source>
   </component>
 </project>

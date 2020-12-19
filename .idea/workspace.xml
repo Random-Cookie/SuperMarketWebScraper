@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6f054de-84e5-4948-a1cb-67166d031365" name="Default Changelist" comment="-Documentation update&#10;-Driver optimisations&#10;-close_driver() added to common.py&#10;-autorun.bat update&#10;-added res/killChrome.bat">
+    <list default="true" id="e6f054de-84e5-4948-a1cb-67166d031365" name="Default Changelist" comment="-Doc added&#10;-Optimised imports&#10;-autorun.bat update">
+      <change afterPath="$PROJECT_DIR$/tests/morisons_cat_scraper_driver.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/prettify.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scrapers/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scrapers/morrisons.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/morrisons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scrapers/tesco.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapers/tesco.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autorun.bat" beforeDir="false" afterPath="$PROJECT_DIR$/autorun.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +16,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Random-Cookie &lt;sefi100@ntlworld.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="ConcurrencyImprovements" />
@@ -24,17 +38,65 @@
   </component>
   <component name="JupyterTrust" id="c8b29809-cd2f-419c-a7e8-73aa7f54ab7d" />
   <component name="ProjectId" id="1knD6iQ1GY1j7szHunAjp789u9R" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/driver.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/morisons_cat_scraper_driver.py" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.test">
+    <configuration name="Morrisons cat test config" type="PythonConfigurationType" factoryName="Python">
+      <module name="TescoWebScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\Joe\DevPython\SuperMarketWebScraper\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/morisons_cat_scraper_driver.py" />
+      <option name="PARAMETERS" value="--supermarket &quot;morrisons&quot; --DATABASE &quot;test.db&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Morrisons" type="PythonConfigurationType" factoryName="Python">
+      <module name="TescoWebScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\Joe\DevPython\SuperMarketWebScraper\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/driver.py" />
+      <option name="PARAMETERS" value="--supermarket &quot;morrisons&quot; --DEBUG_INFO" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Params" type="PythonConfigurationType" factoryName="Python">
       <module name="TescoWebScraper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -57,6 +119,63 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="prettify" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TescoWebScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/prettify.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TescoWebScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Params" />
+      <item itemvalue="Python.Morrisons" />
+      <item itemvalue="Python.Morrisons cat test config" />
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python.prettify" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.prettify" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -78,7 +197,17 @@
       <workItem from="1606333114806" duration="160000" />
       <workItem from="1606338107469" duration="38000" />
       <workItem from="1606357063086" duration="2717000" />
-      <workItem from="1606401164948" duration="1012000" />
+      <workItem from="1606401164948" duration="1391000" />
+      <workItem from="1606564397544" duration="2478000" />
+      <workItem from="1606609515779" duration="3650000" />
+      <workItem from="1606655209287" duration="3004000" />
+      <workItem from="1606668433574" duration="1964000" />
+      <workItem from="1606670706573" duration="727000" />
+      <workItem from="1606837497400" duration="5902000" />
+      <workItem from="1606843827939" duration="230000" />
+      <workItem from="1606929289454" duration="1122000" />
+      <workItem from="1608057471142" duration="448000" />
+      <workItem from="1608379709651" duration="405000" />
     </task>
     <task id="LOCAL-00002" summary="changed --website to --supermarket">
       <created>1606327377982</created>
@@ -108,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606359868346</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="-Doc added&#10;-Optimised imports&#10;-autorun.bat update">
+      <created>1606402267494</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606402267494</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,74 +257,144 @@
     <MESSAGE value="-Modified scraper class names&#10;-Imported classes into driver.py&#10;-Changed names in driver.py to be supermarket specific&#10;-Changed default database to test.db (for testing)&#10;-Changed return of create_prod_scraper to Scraper" />
     <MESSAGE value="-Changed over to creating scrapers using methods&#10;    -For future supermarket implementation" />
     <MESSAGE value="-Documentation update&#10;-Driver optimisations&#10;-close_driver() added to common.py&#10;-autorun.bat update&#10;-added res/killChrome.bat" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Documentation update&#10;-Driver optimisations&#10;-close_driver() added to common.py&#10;-autorun.bat update&#10;-added res/killChrome.bat" />
+    <MESSAGE value="-Doc added&#10;-Optimised imports&#10;-autorun.bat update" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Doc added&#10;-Optimised imports&#10;-autorun.bat update" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606329758596">
+    <state x="759" y="229" width="900" height="582" key="#Python" timestamp="1606565581539">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="562" y="152" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606329758596" />
-    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2" timestamp="1606401258785">
+    <state x="759" y="229" width="900" height="582" key="#Python/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606565581539" />
+    <state x="703" y="162" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606839441089">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606401258785" />
-    <state x="740" y="287" key="FileChooserDialogImpl" timestamp="1606256447488">
+    <state x="703" y="162" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606839441089" />
+    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2" timestamp="1608379823780">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="287" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606256447488" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1606359887388">
+    <state x="111" y="75" width="1537" height="826" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606402266379" />
+    <state x="111" y="75" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1608379823780" />
+    <state x="740" y="287" key="FileChooserDialogImpl" timestamp="1606664583003">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1606359887388">
+    <state x="740" y="287" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606664583003" />
+    <state width="1877" height="240" key="GridCell.Tab.0.bottom" timestamp="1606950019845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1606359887388">
+    <state width="1877" height="240" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606950019845" />
+    <state width="1877" height="240" key="GridCell.Tab.0.center" timestamp="1606950019845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1606359887388">
+    <state width="1877" height="240" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606950019845" />
+    <state width="1877" height="240" key="GridCell.Tab.0.left" timestamp="1606950019844">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1606359887389">
+    <state width="1877" height="240" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606950019844" />
+    <state width="1877" height="240" key="GridCell.Tab.0.right" timestamp="1606950019845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887389" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1606359887388">
+    <state width="1877" height="240" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606950019845" />
+    <state width="1877" height="240" key="GridCell.Tab.1.bottom" timestamp="1606950019845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1606359887388">
+    <state width="1877" height="240" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606950019845" />
+    <state width="1877" height="240" key="GridCell.Tab.1.center" timestamp="1606950019845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887388" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1606359887389">
+    <state width="1877" height="240" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606950019845" />
+    <state width="1877" height="240" key="GridCell.Tab.1.left" timestamp="1606950019845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359887389" />
+    <state width="1877" height="240" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606950019845" />
+    <state width="1877" height="240" key="GridCell.Tab.1.right" timestamp="1606950019845">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="240" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606950019845" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1606402511160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="196" height="457" key="HiddenNamespacesPopup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606402511160" />
     <state x="764" y="240" key="RollbackChangesDialog" timestamp="1606333249216">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="764" y="240" key="RollbackChangesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606333249216" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1606359870431">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1606402269219">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606359870431" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606402269219" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1606843975485">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="968" height="528" key="XDebugger.FullValuePopup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606843975485" />
+    <state x="-1920" y="61" width="1633" height="1027" maximized="true" key="dock-window-1" timestamp="1608380117785">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1920" y="61" width="1633" height="1027" maximized="true" key="dock-window-1/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1608057847003" />
+    <state x="667" y="119" width="585" height="801" key="find.popup" timestamp="1606840223575">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="119" width="585" height="801" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606840223575" />
+    <state x="740" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1608380063895">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="233" key="git4idea.branch.GitSmartOperationDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1608380063895" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/driver.py</url>
+          <line>267</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/driver.py</url>
+          <line>233</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/morisons_cat_scraper_driver.py</url>
+          <line>176</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Scrapers/morrisons.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/morisons_cat_scraper_driver.py</url>
+          <line>259</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/prettify.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Scrapers/morrisons.py</url>
+          <line>46</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="PRODUCTS_ON_PAGE" language="Python" />
+        <watch expression="url + '?display=5000'" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$prettify.coverage" NAME="prettify Coverage Results" MODIFIED="1606841314036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$Morrisons.coverage" NAME="Morrisons Coverage Results" MODIFIED="1606655515546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$DBTests.coverage" NAME="DBTests Coverage Results" MODIFIED="1595714117292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$Params.coverage" NAME="Params Coverage Results" MODIFIED="1606359714101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$driver.coverage" NAME="driver Coverage Results" MODIFIED="1606253972470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$Morrisons_cat_test_config.coverage" NAME="Morrisons cat test config Coverage Results" MODIFIED="1606837856087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$AllParamTest.coverage" NAME="AllParamTest Coverage Results" MODIFIED="1606239844691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SuperMarketWebScraper$test.coverage" NAME="test Coverage Results" MODIFIED="1606929798322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SuperMarketWebScraper$CommandLineParams.coverage" NAME="CommandLineParams Coverage Results" MODIFIED="1606187896292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

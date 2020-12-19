@@ -91,15 +91,6 @@ def convert(seconds) -> str:
 	return "%d:%02d:%02d" % (hour, minutes, seconds)
 
 
-def create_driver(chromedriver_path) -> webdriver.Chrome:
-	"""Create a driver for the scrapers
-
-	:param chromedriver_path: Path of the chromedriver.exe
-	:return: a driver
-	"""
-	return webdriver.Chrome(chromedriver_path, options=DRIVER_OPTIONS)
-
-
 # create and return a connection to a database file
 def create_connection(db_file) -> sqlite3.Connection:
 	"""Create a connection to the database
@@ -148,6 +139,15 @@ def write_product(connection, product: Product) -> int:
 			return cur.lastrowid
 
 
+def create_driver(chromedriver_path) -> webdriver.Chrome:
+	"""Create a driver for the scrapers
+
+	:param chromedriver_path: Path of the chromedriver.exe
+	:return: a driver
+	"""
+	return webdriver.Chrome(chromedriver_path, options=DRIVER_OPTIONS)
+
+
 def create_home_scraper(driver) -> Scraper:
 	"""Create a home page scraper
 
@@ -157,7 +157,7 @@ def create_home_scraper(driver) -> Scraper:
 	if args.supermarket == "asda":
 		pass
 	elif args.supermarket == "morrisons":
-		return Scrapers.morrisons.HomePageScraper(driver, URL_PREFIX, 6)
+		return Scrapers.morrisons.HomePageScraper(driver, URL_PREFIX, TOTAL_CATEGORIES)
 	elif args.supermarket == "sainsburys":
 		pass
 	else:
@@ -233,18 +233,9 @@ def scrape_category(cat_url):
 	# For each page in the category
 	while not cat_scraper.get_next_url() is None:
 		# scrape the next page
+		print(cat_scraper.get_current_url())
 		urls = cat_scraper.scrape_next_page()
 		page_start_time = time.time()
-		# Use one thread to scrape each page using the scrapers and urls is appropriate arrays
-		with concurrent.futures.ThreadPoolExecutor(max_workers=PRODUCTS_ON_PAGE) as cat_executor:
-			products_counted = list(cat_executor.map(scrape_category_page, urls, prod_scrapers))
-		# sum the added products
-		product_count = sum(products_counted)
-		if DEBUG_INFO:
-			print("     Scraped: " + cat_scraper.get_current_url())
-			print("         Added " + str(product_count) + " products in " + convert(time.time() - page_start_time))
-		# add products to category count
-		cat_product_count += product_count
 	print("Scraped: " + cat_url)
 	print(" Added " + str(cat_product_count) + " products in " + convert(time.time() - cat_start_time))
 	# Close the drivers
